@@ -7,6 +7,7 @@ import {
   errorHandler,
   logErrors,
 } from "./middlewares/error.handler";
+import cron from 'node-cron'
 import { scrapAll } from "./app/scrapAll";
 
 dotenv.config();
@@ -15,7 +16,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(express.json());
-const whitelist = ["http://localhost:8080"];
+const whitelist = ["http://localhost:5173"];
 const options: cors.CorsOptions = {
   origin: (origin, callback) => {
     if (whitelist.includes(origin || "") || !origin) {
@@ -37,8 +38,15 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-//scrapAll()
-
 app.listen(PORT, () => {
   console.log(`El backend se inicio en el puerto ${PORT}`);
 });
+
+//scrapAll()
+
+let task = cron.schedule('59 59 23 * * *', () => {
+  //scrapAll()
+  console.log('Se corre la tarea cada 1 dia')
+})
+
+task.start()

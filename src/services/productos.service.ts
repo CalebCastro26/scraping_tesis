@@ -26,10 +26,7 @@ export class ProductosService {
       include: ['tiendas']
     })
 
-    return {
-      statusCode : 200,
-      data : productos
-    }
+    return productos
   }
 
   async create(data: any){
@@ -56,10 +53,7 @@ export class ProductosService {
       include: ['tiendas']
     })
 
-    return {
-      statusCode : 200,
-      data : productos
-    }
+    return productos
   }
 
   async findByTienda(){

@@ -52,8 +52,8 @@ export async function scrapImpacto() {
       return parseInt(lastPageLink.textContent)
     }
   ) || 0
-  for (let i = 1; i <= pageNumber; i++) {
-    await page.goto(`https://www.impacto.com.pe/catalogo?page=${i}`)
+  for (let i = 76; i <= pageNumber; i++) {
+    await page.goto(`https://www.impacto.com.pe/catalogo?page=${i}`) //https://www.impacto.com.pe/catalogo?page=76
     const cardInfo = await scrapyCardInfo(page)
     cardInfo.forEach(item => {
       console.log(item)

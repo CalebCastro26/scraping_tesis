@@ -60,8 +60,8 @@ export async function scrapSercoPlus() {
     }
   ) || 0
 
-  for (let i = 1; i <= pageNumber; i++) {
-    await page.goto(`https://www.sercoplus.com/731-arma-tu-pc?page=${i}`)
+  for (let i = 48; i <= pageNumber; i++) {
+    await page.goto(`https://www.sercoplus.com/731-arma-tu-pc?page=${i}`) //https://www.sercoplus.com/731-arma-tu-pc?page=48
     const cardInfo = await scrapyCardInfo(page)
     const filterCards = await filterOptions(cardInfo)
     filterCards.forEach((item: any) => {
