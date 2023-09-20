@@ -1,9 +1,8 @@
-import {Model, DataTypes} from 'sequelize'
-import type {Sequelize} from 'sequelize'
-import { TIEDAS_TABLE } from './tiendas.model'
+import { Model, DataTypes } from "sequelize";
+import type { Sequelize } from "sequelize";
+import { TIENDAS_TABLE } from "./tiendas.model";
 
-
-export const PRODUCTO_TABLE = 'producto'
+export const PRODUCTO_TABLE = "productos";
 
 export const ProductoSchema = {
   id: {
@@ -38,30 +37,27 @@ export const ProductoSchema = {
   },
   tiendaId: {
     allowNull: false,
-    field: 'tienda_id',
+    field: "tiendas_id",
     type: DataTypes.INTEGER,
-    references: {
-      model: TIEDAS_TABLE,
-      key: 'id'
-    },
-    onUpdate: 'CASCADE',
-    onDelete: 'SET NULL',
-  }
-}
+  },
+};
 
 export class Producto extends Model {
-  static associate(models: Sequelize['models']) {
-    this.belongsTo(models.Tiendas, { as: 'tienda' });
+  static associate(models: Sequelize["models"]) {
+    this.belongsTo(models.Tiendas, {
+      as: 'tiendas',
+      foreignKey: 'tiendas_id',
+    });
   }
 
   static config(sequelize: Sequelize) {
     return {
       sequelize,
       tableName: PRODUCTO_TABLE,
-      modelName: 'Producto',
-      timeStamps: false,
+      modelName: "Producto",
+      timestamps: false,
       createdAt: false,
-      updatedAt: false
-    }
+      updatedAt: false,
+    };
   }
 }

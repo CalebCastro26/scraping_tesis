@@ -52,7 +52,7 @@ export async function scrapImpacto() {
       return parseInt(lastPageLink.textContent)
     }
   ) || 0
-  for (let i = 76; i <= pageNumber; i++) {
+  for (let i = 1; i <= pageNumber; i++) {
     await page.goto(`https://www.impacto.com.pe/catalogo?page=${i}`)
     const cardInfo = await scrapyCardInfo(page)
     cardInfo.forEach(item => {
@@ -64,7 +64,7 @@ export async function scrapImpacto() {
         priceDolar: item.priceDolar!,
         priceSoles: item.priceSoles!,
         url: item.url!,
-        "tienda_id": item.tienda
+        "tiendas_id": item.tienda
       })
     })
   }

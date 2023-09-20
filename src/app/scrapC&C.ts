@@ -45,7 +45,7 @@ export async function scrapCyC() {
     //slowMo: 220,
   })
   const page = await browser.newPage()
-  await page.goto('https://cyccomputer.pe/250-pc-componente?page=34') //https://cyccomputer.pe/250-pc-componente?page=50
+  await page.goto('https://cyccomputer.pe/250-pc-componente?page=1') //https://cyccomputer.pe/250-pc-componente?page=50
   const nextPageSelector = '.page-list a.next.js-search-link'
   let hasNextPage = true
   while (hasNextPage) {
@@ -59,7 +59,7 @@ export async function scrapCyC() {
         priceDolar: item.priceDolar!,
         priceSoles: item.priceSoles!,
         url: item.url!,
-        "tienda_id": item.tienda
+        "tiendas_id": item.tienda
       })
     })
     const nextPageElement = await page.$(nextPageSelector)

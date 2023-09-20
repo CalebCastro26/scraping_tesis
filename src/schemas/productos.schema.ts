@@ -15,5 +15,5 @@ export const createCategorySchema = Joi.object({
   priceDolar: priceDolar.required(),
   priceSoles: priceSoles.required(),
   url: url.required(),
-  tienda_id: tienda_id.required()
+  tiendas_id: tienda_id.required()
 })

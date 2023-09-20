@@ -14,7 +14,16 @@ export class ProductosService {
     const productos = await sequelize.models.Producto.findAndCountAll({
       limit,
       offset,
-      include: ['tienda']
+      attributes: [
+        "id",
+        "imgSrc",
+        "dataOriginal",
+        "imgTitle",
+        "priceDolar",
+        "priceSoles",
+        "url"
+      ],
+      include: ['tiendas']
     })
 
     return {
@@ -26,7 +35,7 @@ export class ProductosService {
   async create(data: any){
     const newProducto = await sequelize.models.Producto.create({
       ...data,
-      tiendaId: data.tienda_id
+      tiendaId: data.tiendas_id
     })
     return newProducto
   }
@@ -44,7 +53,7 @@ export class ProductosService {
       },
       limit,
       offset,
-      include: ['tienda']
+      include: ['tiendas']
     })
 
     return {
@@ -58,6 +67,6 @@ export class ProductosService {
   }
 
   async deleteAll() {
-    await sequelize.query('DELETE FROM producto')
+    await sequelize.query('DELETE FROM productos')
   }
 }

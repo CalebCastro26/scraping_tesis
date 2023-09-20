@@ -60,7 +60,7 @@ export async function scrapSercoPlus() {
     }
   ) || 0
 
-  for (let i = 47; i <= pageNumber; i++) {
+  for (let i = 1; i <= pageNumber; i++) {
     await page.goto(`https://www.sercoplus.com/731-arma-tu-pc?page=${i}`)
     const cardInfo = await scrapyCardInfo(page)
     const filterCards = await filterOptions(cardInfo)
@@ -73,7 +73,7 @@ export async function scrapSercoPlus() {
         priceDolar: item.priceDolar!,
         priceSoles: item.priceSoles!,
         url: item.url!,
-        "tienda_id": item.tienda
+        "tiendas_id": item.tienda
       })
     })
   }
